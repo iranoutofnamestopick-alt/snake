@@ -109,3 +109,102 @@ button:hover {
         height: 300px;
     }
 }
+
+/* Game Over Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background-color: #8b9977;
+    border: 8px solid #494949;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    animation: modalDrop 0.5s ease-out;
+}
+
+@keyframes modalDrop {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    background-color: #494949;
+    padding: 15px;
+    text-align: center;
+}
+
+.modal-header h2 {
+    color: #e63946;
+    font-size: 28px;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+.modal-body {
+    padding: 20px;
+    text-align: center;
+    color: #1a1a1a;
+}
+
+.snake-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+    animation: snakeWiggle 1s infinite alternate;
+}
+
+@keyframes snakeWiggle {
+    from { transform: rotate(-5deg); }
+    to { transform: rotate(5deg); }
+}
+
+.modal-body p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.final-score, .high-score {
+    font-size: 20px;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+#final-score, #high-score {
+    color: #e63946;
+}
+
+.modal-footer {
+    padding: 15px;
+    text-align: center;
+}
+
+#play-again-btn {
+    background-color: #e63946;
+    color: white;
+    font-size: 18px;
+    padding: 10px 25px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+#play-again-btn:hover {
+    background-color: #c1121f;
+    transform: scale(1.05);
+}

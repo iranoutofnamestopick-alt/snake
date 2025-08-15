@@ -27,6 +27,30 @@
                 <button id="down-btn">↓</button>
             </div>
         </div>
+        
+        <!-- Game Over Modal -->
+        <div id="game-over-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>GAME OVER</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="snake-icon">🐍</div>
+                    <p>Your snake crashed!</p>
+                    <div class="score-display">
+                        <div class="score-item">
+                            <span class="score-label">Score:</span>
+                            <span id="final-score" class="score-value">0</span>
+                        </div>
+                        <div class="score-item">
+                            <span class="score-label">High Score:</span>
+                            <span id="high-score" class="score-value">0</span>
+                        </div>
+                    </div>
+                    <button id="play-again-btn">Play Again</button>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="game.js"></script>
 </body>

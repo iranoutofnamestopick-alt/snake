@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const startButton = document.getElementById('start-btn');
     const scoreElement = document.getElementById('score');
     
+    // Game over modal elements
+    const gameOverModal = document.getElementById('game-over-modal');
+    const finalScoreElement = document.getElementById('final-score');
+    const highScoreElement = document.getElementById('high-score');
+    const playAgainButton = document.getElementById('play-again-btn');
+    
     // Mobile control buttons
     const upButton = document.getElementById('up-btn');
     const downButton = document.getElementById('down-btn');
@@ -23,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let gameRunning = false;
     let gameLoop;
     let score = 0;
+    let highScore = localStorage.getItem('snakeHighScore') || 0;
     
     // Initialize game
     function initGame() {
@@ -38,6 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
         nextDirection = 'right';
         generateFood();
         if (gameLoop) clearInterval(gameLoop);
+        
+        // Hide game over modal if it's showing
+        gameOverModal.classList.remove('show');
     }
     
     // Generate food at random position
@@ -136,17 +146,22 @@ document.addEventListener('DOMContentLoaded', () => {
         gameRunning = false;
         startButton.textContent = 'Restart Game';
         
-        // Display game over message
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
+        // Update high score if needed
+        if (score > highScore) {
+            highScore = score;
+            localStorage.setItem('snakeHighScore', highScore);
+        }
+        
+        // Update modal with final scores
+        finalScoreElement.textContent = score;
+        highScoreElement.textContent = highScore;
+        
+        // Show the game over modal with animation
+        gameOverModal.classList.add('show');
+        
+        // Add a dark overlay to the game canvas
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.font = '30px Courier New';
-        ctx.fillStyle = 'white';
-        ctx.textAlign = 'center';
-        ctx.fillText('Game Over!', canvas.width / 2, canvas.height / 2 - 15);
-        
-        ctx.font = '20px Courier New';
-        ctx.fillText(`Score: ${score}`, canvas.width / 2, canvas.height / 2 + 15);
     }
     
     // Render game
@@ -200,6 +215,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Event listeners
     startButton.addEventListener('click', startGame);
+    playAgainButton.addEventListener('click', () => {
+        initGame();
+        startGame();
+    });
     
     // Keyboard controls
     document.addEventListener('keydown', (e) => {
