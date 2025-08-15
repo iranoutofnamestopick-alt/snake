@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
+    <title>Snake: Ultimate</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -25,6 +25,24 @@
                     <button id="right-btn">→</button>
                 </div>
                 <button id="down-btn">↓</button>
+            </div>
+        </div>
+        
+        <!-- Start Screen Modal -->
+        <div id="start-screen-modal" class="modal show">
+            <div class="modal-content start-screen">
+                <div class="start-screen-header">
+                    <h1 class="game-title">Snake: Ultimate</h1>
+                    <div class="snake-icon animated">🐍</div>
+                </div>
+                <div class="start-screen-body">
+                    <p class="game-description">The classic Nokia snake game, reimagined!</p>
+                    <div class="high-score-display">
+                        <span class="high-score-label">High Score: </span>
+                        <span id="start-high-score" class="high-score-value">0</span>
+                    </div>
+                    <button id="start-game-btn" class="start-button">Start Game</button>
+                </div>
             </div>
         </div>
         

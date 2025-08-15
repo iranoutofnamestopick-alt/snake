@@ -110,39 +110,148 @@ button:hover {
     }
 }
 
-/* Game Over Modal Styles */
+/* Modal Styles */
 .modal {
     display: none;
     position: fixed;
-    z-index: 10;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    align-items: center;
-    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
 }
 
 .modal.show {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .modal-content {
-    background-color: #8b9977;
-    border: 8px solid #494949;
-    border-radius: 10px;
-    width: 90%;
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    border: 3px solid #3498db;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s ease-out;
     max-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    animation: modalDrop 0.5s ease-out;
+    width: 90%;
 }
 
-@keyframes modalDrop {
-    from { transform: translateY(-50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
+/* Start Screen Styles */
+.start-screen {
+    max-width: 500px;
+    padding: 40px;
+}
+
+.start-screen-header {
+    margin-bottom: 30px;
+}
+
+.game-title {
+    color: #f39c12;
+    font-family: 'Courier New', monospace;
+    font-size: 3.5em;
+    margin: 0 0 20px 0;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    background: linear-gradient(45deg, #f39c12, #e67e22);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.snake-icon.animated {
+    font-size: 4em;
+    margin: 20px 0;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.start-screen-body {
+    color: #ecf0f1;
+    font-family: 'Courier New', monospace;
+}
+
+.game-description {
+    font-size: 1.3em;
+    margin: 25px 0;
+    color: #bdc3c7;
+    font-style: italic;
+}
+
+.high-score-display {
+    margin: 30px 0;
+    padding: 15px;
+    background: rgba(52, 73, 94, 0.3);
+    border-radius: 10px;
+    border: 2px solid #3498db;
+}
+
+.high-score-label {
+    font-size: 1.2em;
+    color: #3498db;
+    font-weight: bold;
+}
+
+.high-score-value {
+    font-size: 1.5em;
+    color: #f39c12;
+    font-weight: bold;
+}
+
+.start-button {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    border: none;
+    padding: 18px 40px;
+    font-size: 1.4em;
+    font-family: 'Courier New', monospace;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3);
+    margin-top: 25px;
+    font-weight: bold;
+}
+
+.start-button:hover {
+    background: linear-gradient(135deg, #c0392b, #e74c3c);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+}
+
+/* Game Over Modal Styles */
 .modal-header {
     background-color: #494949;
     padding: 15px;
@@ -150,35 +259,65 @@ button:hover {
 }
 
 .modal-header h2 {
-    color: #e63946;
-    font-size: 28px;
-    margin: 0;
-    font-family: 'Courier New', Courier, monospace;
+    color: #e74c3c;
+    font-family: 'Courier New', monospace;
+    font-size: 2.5em;
+    margin: 0 0 20px 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    letter-spacing: 2px;
 }
 
 .modal-body {
-    padding: 20px;
-    text-align: center;
-    color: #1a1a1a;
-}
-
-.snake-icon {
-    font-size: 40px;
-    margin-bottom: 15px;
-    animation: snakeWiggle 1s infinite alternate;
-}
-
-@keyframes snakeWiggle {
-    from { transform: rotate(-5deg); }
-    to { transform: rotate(5deg); }
+    color: #ecf0f1;
+    font-family: 'Courier New', monospace;
 }
 
 .modal-body p {
-    font-size: 18px;
-    margin-bottom: 20px;
+    font-size: 1.2em;
+    margin: 20px 0;
+}
+
+.snake-icon {
+    font-size: 3em;
+    margin: 20px 0;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.score-display {
+    margin: 25px 0;
+}
+
+.score-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(52, 73, 94, 0.3);
+    border-radius: 8px;
+    border: 1px solid #3498db;
+}
+
+.score-label {
     font-weight: bold;
+    color: #3498db;
+}
+
+.score-value {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #f39c12;
 }
 
 .final-score, .high-score {
@@ -197,14 +336,21 @@ button:hover {
 }
 
 #play-again-btn {
-    background-color: #e63946;
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
     color: white;
-    font-size: 18px;
-    padding: 10px 25px;
-    transition: transform 0.2s, background-color 0.2s;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-family: 'Courier New', monospace;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+    margin-top: 20px;
 }
 
 #play-again-btn:hover {
-    background-color: #c1121f;
-    transform: scale(1.05);
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
 }

@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const startButton = document.getElementById('start-btn');
     const scoreElement = document.getElementById('score');
     
+    // Start screen modal elements
+    const startScreenModal = document.getElementById('start-screen-modal');
+    const startGameButton = document.getElementById('start-game-btn');
+    const startHighScoreElement = document.getElementById('start-high-score');
+    
     // Game over modal elements
     const gameOverModal = document.getElementById('game-over-modal');
     const finalScoreElement = document.getElementById('final-score');
@@ -46,7 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
         generateFood();
         if (gameLoop) clearInterval(gameLoop);
         
-        // Hide game over modal if it's showing
+        // Hide modals
+        startScreenModal.classList.remove('show');
         gameOverModal.classList.remove('show');
     }
     
@@ -215,6 +221,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Event listeners
     startButton.addEventListener('click', startGame);
+    startGameButton.addEventListener('click', () => {
+        initGame();
+        startGame();
+    });
     playAgainButton.addEventListener('click', () => {
         initGame();
         startGame();
@@ -254,6 +264,9 @@ document.addEventListener('DOMContentLoaded', () => {
     rightButton.addEventListener('click', () => {
         if (direction !== 'left') nextDirection = 'right';
     });
+    
+    // Initialize start screen
+    startHighScoreElement.textContent = highScore;
     
     // Initial render
     initGame();
